@@ -2,8 +2,10 @@ plugins {
 	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id "org.flywaydb.flyway" version "6.4.4"
 }
 
+apply plugin: 'jacoco'
 group = 'com.udayanga'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
@@ -19,9 +21,19 @@ dependencies {
 	}
 	// https://mvnrepository.com/artifact/junit/junit
 	testCompile group: 'junit', name: 'junit', version: '4.4'
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+	
 	
 }
 
 test {
 	useJUnitPlatform()
 }
+
+flyway {
+    url = 'jdbc:mysql://52.187.23.8:6606/flyway_test?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false'
+    user = 'apigee'
+    password = 'Singteliot123!'
+}
+
